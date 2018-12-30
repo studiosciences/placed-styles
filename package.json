@@ -1,0 +1,41 @@
+{
+  "name": "placed-components",
+  "version": "0.0.1",
+  "description": "A library for handling component layouts with deterministic affects across versions. This separates the layout, controlled by the consumer of a component, from the appearance, controlled by the component developer.",
+  "license": "MIT License",
+  "author": "Marc Robichaud",
+  "contributors": [
+    {
+      "name": "Marc Robichaud",
+      "email": "marc@studiosciences.ca",
+      "url": "https://github.com/studiosciences"
+    }
+  ],
+  "keywords": [
+    "react",
+    "css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/studiosciences/placed-components"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "clean": "rimraf ./build/*",
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-loader": "^8.0.4",
+    "rimraf": "2.6.2",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "3.1.4"
+  },
+  "dependencies": {
+    "underscore": "^1.9.1"
+  }
+}
