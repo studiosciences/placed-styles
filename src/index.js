@@ -6,6 +6,10 @@ const supportedKeys = [
   'visibility',
   'width',
   'minWidth',
+  'marginLeft',
+  'marginRight',
+  'marginTop',
+  'marginBottom',
   'maxWidth',
   'height',
   'minHeight',
@@ -58,9 +62,10 @@ function except(excludeKeys) {
 export const placeTypes = { any, except };
 
 function mergeDisplay(inside, outside, internal, listItem) {
-  return `${listItem || internal} ${displayInside || 'block'} ${
-    displayOutside === 'inline' ? 'inline' : ''
+  const output = `${listItem || internal || ''} ${inside || 'block'} ${
+    outside === 'inline' ? 'inline' : ''
   }`;
+  return output.trim();
 }
 
 export function placeStyles(styles, defaults = {}) {
@@ -81,7 +86,7 @@ export function placeStyles(styles, defaults = {}) {
       displayListItem
     );
   }
-  return output;
+  return outputStyles;
 }
 
 export function placeCSS(styles) {
