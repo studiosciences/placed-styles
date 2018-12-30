@@ -3,11 +3,11 @@ var webpackConfig = require('./webpack.config.js');
 module.exports = function(config) {
   config.set({
     basePath: '',
-    frameworks: ['chai'],
+    frameworks: ['mocha', 'chai'],
 
     reporters: ['progress'],
     port: 9876,
-    colors: false,
+    colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['PhantomJS'],
@@ -19,8 +19,9 @@ module.exports = function(config) {
     plugins: [
       'karma-chai',
       'karma-babel-preprocessor',
-      'karma-webpack',
+      'karma-mocha',
       'karma-phantomjs-launcher',
+      'karma-webpack',
     ],
 
     preprocessors: {
