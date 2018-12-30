@@ -1,4 +1,4 @@
-import { intersection, omit } from 'underscore';
+import { intersection } from 'underscore';
 
 const supportedKeys = [
   'displayOutside',
