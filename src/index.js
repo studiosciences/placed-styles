@@ -1,9 +1,9 @@
 import { intersection } from 'underscore';
 
 const supportedKeys = [
-  'displayOutside',
   'float',
   'visibility',
+  'vertical-align',
   'width',
   'minWidth',
   'marginLeft',
@@ -61,35 +61,11 @@ function except(excludeKeys) {
 
 export const placeTypes = { any, except };
 
-function mergeDisplay(inside, outside, internal, listItem) {
-  const output = `${listItem || internal || ''} ${inside || 'block'} ${
-    outside === 'inline' ? 'inline' : ''
-  }`;
-  return output.trim();
+export function placeStyles(outsideStyles, defaultStyles = {}) {
+  return { ...defaultStyles, ...outsideStyles };
 }
 
-export function placeStyles(styles, defaults = {}) {
-  const mergedStyles = { ...defaults, ...styles };
-  const {
-    displayInside,
-    displayOutside,
-    displayInternal,
-    displayListItem,
-    ...outputStyles
-  } = mergedStyles;
-
-  if (displayInside || displayOutside) {
-    outputStyles.display = mergeDisplay(
-      displayInside,
-      displayOutside,
-      displayInternal,
-      displayListItem
-    );
-  }
-  return outputStyles;
-}
-
-export function placeCSS(styles) {
+export function placeCSS(outsideStyles) {
   const object = placeStyles(styles);
 
   let output = '';

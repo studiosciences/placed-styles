@@ -59,13 +59,16 @@ constituent parts. The `placeStyles()` and `placeCSS()` functions will merge
 these as necessary.
 
 ```
-displayOutside: 'block' | 'inline',
-
 position,
 top,
 right,
 bottom,
 left,
+
+margin-top,
+margin-right,
+margin-bottom,
+margin-left,
 
 width,
 height,
@@ -118,7 +121,7 @@ import { PlaceTypes } from 'placed-components';
 ...
 
 static propTypes = {
-  place: PlaceTypes.except(['displayOutside', 'minWidth', 'height', 'minHeight']),
+  place: PlaceTypes.except(['minWidth', 'height', 'minHeight', 'maxHeight']),
   value: PropTypes.number,
 };
 ```
@@ -132,16 +135,16 @@ displayInternal: 'table-row-group' | table-header-group' | 'table-footer-group' 
 displayListItem: 'list-item',
 ```
 
-### `placeStyles(styles, [defaultStyles])`
+### `placeStyles(outsideStyles, [outsideDefaults], insideStyles)`
 
 This function returns the consumer defined styles and the defaults as a single
-styles object for use in the `styles` element property. It also combines
-`displayInside`, `displayOutside`, `displayListItem`, and `displayTable` into a
-single `display` property.
+styles object for use in the `styles` element property. It also combines the
+outside `display` ('inline' or 'block') with the inside `display`
+('flex', 'block') property and errors if there are conflicts.
 
 #### Parameters
 
-#### `styles`
+#### `outsideStyles`
 
 _Description_: The styles as defined by the consumer in the component props.
 
@@ -149,7 +152,7 @@ _Type_: Object
 
 _Required_: Yes
 
-#### `defaultStyles`
+#### `insideStyles`
 
 _Description_: The default styles to use in placing the component.
 
@@ -157,7 +160,7 @@ _Type_: Object
 
 _Required_: No
 
-_Default_: `{ displayOutside: 'block' }`
+_Default_: `{ display: 'block' }`
 
 #### Example
 
@@ -176,7 +179,7 @@ render() {
 }
 ```
 
-### `placeCSS(styles, [defaultStyles])`
+### `placeCSS(outsideStyles, [displayInside])`
 
 This function returns the consumer defined styles and the defaults as a single
 string of css for use in another library, such as styled-components. It also
